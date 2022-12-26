@@ -1,0 +1,1 @@
+(()=>{"use strict";console.log("oneJs"),console.log("twoJs")})();
