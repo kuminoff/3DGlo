@@ -1,7 +1,3 @@
-/*jshint esversion: 6 */
+import timer from "./modules/timer.js";
 
-import oneJS from "./modules/one.js";
-import twoJS from "./modules/two.js";
-
-oneJS();
-twoJS();
+timer("31 december 2022");
