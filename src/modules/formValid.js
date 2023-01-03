@@ -12,7 +12,7 @@ const formValid = () => {
   formItemsText.forEach((formItemText) => {
     formItemText.addEventListener("input", () => {
       console.log("Сообщение");
-      formItemText.value = formItemText.value.replace(/[^а-яА-Я\s\-]+/, "");
+      formItemText.value = formItemText.value.replace(/[^а-яА-Я\s\-]+/, ""); //
     });
   });
 
