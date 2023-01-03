@@ -1,5 +1,3 @@
-/*jshint esversion: 6 */
-
 const path = require("path");
 
 module.exports = {
@@ -7,13 +5,13 @@ module.exports = {
   entry: "./index.js",
   output: {
     filename: "main.js",
-    path: path.resolve(__dirname, "dist/js"),
+    path: path.resolve(__dirname, "./dist/js"),
   },
 
   devServer: {
     hot: true,
     static: {
-      directory: "./dist/js",
+      directory: "./dist",
       watch: true,
     },
   },
