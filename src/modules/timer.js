@@ -4,41 +4,20 @@ const timer = (deadline) => {
   const timerSeconds = document.getElementById("timer-seconds");
   const timerDays = document.getElementById("timer-days");
   let timerInterval;
-  let daysWord;
 
   const getTimeRemaining = () => {
     let dateStop = new Date(deadline).getTime();
     let dateNow = new Date().getTime();
     let timeRemaining = (dateStop - dateNow) / 1000;
-    let days = Math.floor(timeRemaining / 3600 / 24);
+    // let days = Math.floor(timeRemaining / 3600 / 24);
+
     let hours = Math.floor((timeRemaining / 3600) % 24);
     let minutes = Math.floor((timeRemaining / 60) % 60);
     let seconds = Math.floor(timeRemaining % 60);
 
-    switch (true) {
-      case days == 0:
-        daysWord = "__)_)_)_";
-        break;
-
-      case days == 1:
-        daysWord = "день";
-        console.log("1");
-        break;
-
-      case days <= 4:
-        daysWord = "дня";
-        console.log("2-4");
-        break;
-
-      case days >= 5:
-        daysWord = "дней";
-        console.log("5+");
-        break;
-    }
-
     return {
       timeRemaining,
-      days,
+      // days,
       hours,
       minutes,
       seconds,
@@ -47,20 +26,8 @@ const timer = (deadline) => {
 
   const updateClock = () => {
     let getTime = getTimeRemaining();
-    timerDays.textContent =
-      getTime.days.toString().length === 1
-        ? getTime.days + daysWord
-        : getTime.days + daysWord;
-    // timerDays.textContent = "   ";
-
-    console.log("getTime.days   " + getTime.days);
-    // let days = getTime.days;
-    if ((getTime.days = 0)) {
-      timerDays.textContent = "   ";
-    }
-
-    // getTime.days = 0 ? console.log("wqe") : getTime.days == "qwe";
-
+    // timerDays.textContent =
+    //   getTime.days.toString().length === 1 ? "0" + getTime.days : getTime.days;
     timerHours.textContent =
       getTime.hours.toString().length === 1
         ? "0" + getTime.hours
@@ -82,7 +49,8 @@ const timer = (deadline) => {
     timerInterval = setInterval(updateClock, 1000);
   } else {
     clearInterval(timerInterval);
-    timerDays.textContent = "00";
+
+    // timerDays.textContent = "00";
     timerHours.textContent = "00";
     timerMinutes.textContent = "00";
     timerSeconds.textContent = "00";
