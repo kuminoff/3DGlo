@@ -6,8 +6,8 @@ const modal = () => {
   const buttons = document.querySelectorAll(".popup-btn");
   const modal = document.querySelector(".popup");
   const closeBtn = modal.querySelector(".popup-close");
-  modal.style.transform = "translateY(100%)";
-  let count = 50;
+  modal.style.transform = "translateY(50%)";
+  let count = 150;
   let modalHandle;
 
   buttons.forEach((item) =>
@@ -22,7 +22,7 @@ const modal = () => {
     if (count > 0) {
       count--;
       modalHandle = requestAnimationFrame(modalShow);
-      modal.style.transform = `translateY(${-count * 30}%)`;
+      modal.style.transform = `translateY(${-count * 4}%)`;
     } else {
       cancelAnimationFrame(modalHandle);
     }

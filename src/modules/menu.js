@@ -28,12 +28,12 @@ const menu = () => {
   menuItems.forEach((item) =>
     item.addEventListener("click", (event) => {
       handleMenu();
-      smoothScroll(event, item);
+      smoothScroll(event);
     })
   );
 
   mouseScroll.addEventListener("click", (event) => {
-    smoothScroll(event, mouseScroll);
+    smoothScroll(event);
   });
 };
 
