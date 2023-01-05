@@ -8,7 +8,7 @@ import formValid from "./modules/formValid.js";
 import tabs from "./modules/tabs";
 import slider from "./modules/slider.js";
 
-timer("25 january 2023");
+timer("8 january 2023");
 menu();
 modal();
 calcValid();
