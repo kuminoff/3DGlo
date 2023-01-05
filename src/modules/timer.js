@@ -13,7 +13,7 @@ const timer = (deadline) => {
     let timeRemaining = (dateStop - dateNow) / 1000;
     // let days = Math.floor(timeRemaining / 3600 / 24);
 
-    let hours = Math.floor((timeRemaining / 3600) % 24);
+    let hours = Math.floor(timeRemaining / 3600);
     let minutes = Math.floor((timeRemaining / 60) % 60);
     let seconds = Math.floor(timeRemaining % 60);
 
@@ -32,16 +32,16 @@ const timer = (deadline) => {
     //   getTime.days.toString().length === 1 ? "0" + getTime.days : getTime.days;
     timerHours.textContent =
       getTime.hours.toString().length === 1
-        ? "0" + getTime.hours
-        : getTime.hours;
+        ? "0" + getTime.hours + "ч"
+        : getTime.hours + "ч";
     timerMinutes.textContent =
       getTime.minutes.toString().length === 1
-        ? "0" + getTime.minutes
-        : getTime.minutes;
+        ? "0" + getTime.minutes + "мин"
+        : getTime.minutes + "мин";
     timerSeconds.textContent =
       getTime.seconds.toString().length === 1
-        ? "0" + getTime.seconds
-        : getTime.seconds;
+        ? "0" + getTime.seconds + "сек"
+        : getTime.seconds + "сек";
     return getTime.timeRemaining;
   };
 

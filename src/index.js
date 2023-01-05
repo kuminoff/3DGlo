@@ -6,7 +6,7 @@ import modal from "./modules/modal.js";
 import calcValid from "./modules/calcValid.js";
 import formValid from "./modules/formValid.js";
 
-timer("4 january 2023");
+timer("14 january 2023");
 menu();
 modal();
 calcValid();
