@@ -9,7 +9,6 @@ const calcValid = () => {
       calcItem.value = calcItem.value.replace(/[^\d]/, "");
     });
   });
-  console.log("qwe");
 };
 
 export default calcValid;

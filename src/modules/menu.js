@@ -5,9 +5,9 @@
 const menu = () => {
   const menu = document.querySelector("menu");
 
-  const smoothScroll = (e, item) => {
+  const smoothScroll = (e) => {
     e.preventDefault();
-    const blockID = item.getAttribute("href").substr(1);
+    const blockID = this.getAttribute("href").substr(1);
 
     document.getElementById(blockID).scrollIntoView({
       behavior: "smooth",
@@ -23,16 +23,16 @@ const menu = () => {
     switch (true) {
       case !!e.target.closest(".close-btn"):
       case !!e.target.closest(".menu"):
-        handleMenu();
+        handleMenu(); //
         break;
       case !!e.target.matches("menu>ul>li>a"):
-        handleMenu();
-        smoothScroll(e, e.target);
+        handleMenu(); //
+        smoothScroll(e);
         break;
       case !!e.target.closest("main>a"):
-        smoothScroll(e, e.target.closest("main>a"));
+        smoothScroll(e);
         if (menu.classList.contains("active-menu")) {
-          handleMenu();
+          handleMenu(); //
         }
         break;
       case !e.target.closest("menu"):
