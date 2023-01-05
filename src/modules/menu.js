@@ -3,18 +3,13 @@
 "use strict";
 
 const menu = () => {
-  const menuBtn = document.querySelector(".menu");
   const menu = document.querySelector("menu");
-  const closeBtn = menu.querySelector(".close-btn");
-  const menuItems = menu.querySelectorAll("ul>li>a");
-  const mouseScroll = document.querySelector("main>a");
 
   const smoothScroll = (e, item) => {
     e.preventDefault();
     const blockID = item.getAttribute("href").substr(1);
 
     document.getElementById(blockID).scrollIntoView({
-      behavior: "smooth",
       block: "start",
     });
   };
@@ -23,17 +18,25 @@ const menu = () => {
     menu.classList.toggle("active-menu");
   };
 
-  menuBtn.addEventListener("click", handleMenu);
-  closeBtn.addEventListener("click", handleMenu);
-  menuItems.forEach((item) =>
-    item.addEventListener("click", (event) => {
-      handleMenu();
-      smoothScroll(event, item);
-    })
-  );
-
-  mouseScroll.addEventListener("click", (event) => {
-    smoothScroll(event, mouseScroll);
+  document.addEventListener("click", (e) => {
+    switch (true) {
+      case !!e.target.closest(".close-btn"):
+      case !!e.target.closest(".menu"):
+        handleMenu();
+        break;
+      case !!e.target.matches("menu>ul>li>a"):
+        handleMenu();
+        smoothScroll(e, e.target);
+        break;
+      case !!e.target.closest("main>a"):
+        smoothScroll(e, e.target.closest("main>a"));
+        break;
+      case !e.target.closest("menu"):
+        if (menu.classList.contains("active-menu")) {
+          handleMenu();
+        }
+        break;
+    }
   });
 };
 
