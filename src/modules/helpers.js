@@ -7,7 +7,7 @@ function animate({ timing, draw, duration }) {
 
     let progress = timing(timeFraction);
 
-    draw(progress); // отрисовать её
+    draw(progress);
 
     if (timeFraction < 1) {
       requestAnimationFrame(animate);
