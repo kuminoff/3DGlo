@@ -1,1 +1,176 @@
-(()=>{"use strict";function e({timing:e,draw:t,duration:a}){let n=performance.now();requestAnimationFrame((function l(o){let r=(o-n)/a;r>1&&(r=1);let c=e(r);t(c),r<1&&requestAnimationFrame(l)}))}(e=>{const t=document.getElementById("timer-hours"),a=document.getElementById("timer-minutes"),n=document.getElementById("timer-seconds");let l;document.getElementById("timer-days");const o=()=>{let e=(()=>{let e=(new Date("24 january 2023").getTime()-(new Date).getTime())/1e3;return{timeRemaining:e,hours:Math.floor(e/3600),minutes:Math.floor(e/60%60),seconds:Math.floor(e%60)}})();return t.textContent=1===e.hours.toString().length?"0"+e.hours+"ч":e.hours+"ч",a.textContent=1===e.minutes.toString().length?"0"+e.minutes+"мин":e.minutes+"мин",n.textContent=1===e.seconds.toString().length?"0"+e.seconds+"сек":e.seconds+"сек",e.timeRemaining};o()>0?l=setInterval(o,1e3):(clearInterval(l),t.textContent="00",a.textContent="00",n.textContent="00")})(),(()=>{const e=document.querySelector("menu"),t=e=>{e.preventDefault();const t=(void 0).getAttribute("href").substr(1);document.getElementById(t).scrollIntoView({behavior:"smooth",block:"start"})},a=()=>{e.classList.toggle("active-menu")};document.addEventListener("click",(n=>{switch(!0){case!!n.target.closest(".close-btn"):case!!n.target.closest(".menu"):a();break;case!!n.target.matches("menu>ul>li>a"):a(),t(n);break;case!!n.target.closest("main>a"):t(n),e.classList.contains("active-menu")&&a();break;case!n.target.closest("menu"):e.classList.contains("active-menu")&&a()}}))})(),(()=>{const t=document.querySelectorAll(".popup-btn"),a=document.querySelector(".popup"),n=a.querySelector(".popup-content");a.style.transform="translateY(100%)",n.style.opacity=0,t.forEach((e=>e.addEventListener("click",(()=>{l()}))));const l=()=>{screen.width>768?e({duration:2e3,timing:e=>e,draw(e){a.style.display="block",a.style.transform=`translateY(${100*(1-e)}%)`,setTimeout((()=>{n.style.opacity=e}),2e3)}}):(a.style.transform="",n.style.opacity=1,a.style.display="block")};a.addEventListener("click",(t=>{t.target.closest(".popup-content")&&!t.target.classList.contains("popup-close")||(screen.width>768?e({duration:2e3,timing:e=>e,draw(e){n.style.opacity=1-e,setTimeout((()=>{a.style.transform=`translateY(${100*e}%)`}),1e3),setTimeout((()=>{a.style.display="none"}),3e3)}}):(a.style.transform="translateY(100%)",a.style.display="none",n.style.opacity=0))}))})(),document.querySelectorAll("input.calc-item").forEach((e=>{e.addEventListener("input",(()=>{e.value=e.value.replace(/[^\d]/,"")}))})),(()=>{const e=document.querySelectorAll("form input[type=text], form input[placeholder='Ваше сообщение']"),t=document.querySelectorAll("form input[type=email]"),a=document.querySelectorAll("form input[type=tel]");e.forEach((e=>{e.addEventListener("input",(()=>{console.log("Сообщение"),e.value=e.value.replace(/[^а-яА-Я\s\-]+/g,"")}))})),t.forEach((e=>{e.addEventListener("input",(()=>{e.value=e.value.replace(/[^a-zA-Z\d\@\-\_\.\!\~\*\']+/g,"")}))})),a.forEach((e=>{e.addEventListener("input",(()=>{e.value=e.value.replace(/[^\d\\(\\)\-]+/g,"")}))})),e.forEach((e=>{e.addEventListener("blur",(()=>{console.log("Сообщение"),e.value=e.value.replace(/[\s]+/g," "),e.value=e.value.replace(/[\-]+/g,"-"),e.value=e.value.replace(/[\s\-]+/g,"-"),e.value=e.value.replace(/^[\s\-]+/g,""),e.value=e.value.replace(/[\s\-]+$/g,""),e.value=e.value.replace(/( |^)[а-яА-Я]/g,(function(e){return e.toUpperCase()}))}))})),t.forEach((e=>{e.addEventListener("blur",(()=>{e.value=e.value.replace(/[\-]+/g,"-"),e.value=e.value.replace(/[\s\-]+/g,"-"),e.value=e.value.replace(/^[\s\-]+/g,""),e.value=e.value.replace(/[\s\-]+$/g,"")}))})),a.forEach((e=>{e.addEventListener("blur",(()=>{e.value=e.value.replace(/[\-]+/g,"-"),e.value=e.value.replace(/^[\s\-]+[\s\-]+/g,""),e.value=e.value.replace(/[\s\-]+$/g,""),e.value=e.value.replace(/[\s\-]+/g,"-")}))}))})(),(()=>{const e=document.querySelectorAll(".service-tab"),t=document.querySelector(".service-header"),a=document.querySelectorAll(".service-header-tab");t.addEventListener("click",(t=>{if(t.target.closest(".service-header-tab")){const n=t.target.closest(".service-header-tab");a.forEach(((t,a)=>{t===n?(t.classList.add("active"),e[a].classList.remove("d-none")):(t.classList.remove("active"),e[a].classList.add("d-none"))}))}}))})(),((e,t,a,n,l,o="portfolio-item-active",r="dot-active")=>{const c=document.querySelector(`.${e}`),s=document.querySelectorAll(`.${t}`),u=document.querySelector(`.${a}`),i=[];if(!(e&&t&&a&&n&&l))return;let d,m=0;const v=(e,t,a)=>{e[t].classList.remove(a)},p=(e,t,a)=>{e[t].classList.add(a)},g=()=>{v(s,m,o),v(i,m,r),m++,m===s.length&&(m=0),p(s,m,o),p(i,m,r)},y=e=>{d=setInterval(g,e)};c.addEventListener("click",(e=>{e.preventDefault(),e.target.matches(`.${n}, .${l}`)&&(v(s,m,o),v(i,m,r),e.target.matches("#arrow-right")?m++:e.target.matches("#arrow-left")?m--:e.target.matches(`.${n}`)&&(m=i.indexOf(e.target)),m===s.length&&(m=0),m<0&&(m=s.length-1),p(s,m,o),p(i,m,r))})),c.addEventListener("mouseenter",(e=>{e.target.matches(`.${n}, .${l}`)&&clearInterval(d)}),!0),c.addEventListener("mouseleave",(e=>{e.target.matches(`.${n}, .${l}`)&&y(2e3)}),!0),(()=>{for(let e=0;e<s.length;e++){const t=document.createElement("li");t.classList.add(n),0===e&&t.classList.add(r),i.push(t),u.append(t)}})(),y(2e3)})("portfolio-content","portfolio-item","portfolio-dots","dot","portfolio-btn","portfolio-item-active","dot-active"),((e=100)=>{const t=document.querySelector(".calc-block"),a=document.querySelector(".calc-type"),n=document.querySelector(".calc-square"),l=document.querySelector(".calc-count"),o=document.querySelector(".calc-day"),r=document.getElementById("total");let c;t.addEventListener("input",(()=>{clearInterval(c),(()=>{const t=+a.options[a.selectedIndex].value,s=+n.value;let u=1+.1*+l.value;4==+l.value&&(u=1.4);const i=o.value?+o.value>=10?1:+o.value>5?1.5:2:1;let d,m=0,v=r.textContent;t&&s?(m=Math.round(e*+t*+s*+u*+i),console.log(e,+t,s,u,i,m),d=0,c=setInterval((()=>{m>+r.textContent?r.textContent=+v+d:m<+r.textContent?r.textContent=+v-d:+r.textContent===m&&clearInterval(c),d+=10**(Math.abs(m-r.textContent).toString().length-1)}),100)):r.textContent=m})()}))})(100)})();
+/*
+ * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./index.js":
+/*!******************!*\
+  !*** ./index.js ***!
+  \******************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_timer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/timer.js */ \"./modules/timer.js\");\n/* harmony import */ var _modules_menu_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/menu.js */ \"./modules/menu.js\");\n/* harmony import */ var _modules_modal_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/modal.js */ \"./modules/modal.js\");\n/* harmony import */ var _modules_calcValid_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/calcValid.js */ \"./modules/calcValid.js\");\n/* harmony import */ var _modules_formValid_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/formValid.js */ \"./modules/formValid.js\");\n/* harmony import */ var _modules_tabs_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/tabs.js */ \"./modules/tabs.js\");\n/* harmony import */ var _modules_slider_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/slider.js */ \"./modules/slider.js\");\n/* harmony import */ var _modules_calc_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/calc.js */ \"./modules/calc.js\");\n/*jshint esversion: 6 */\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n(0,_modules_timer_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(\"24 january 2023\");\r\n(0,_modules_menu_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])();\r\n(0,_modules_modal_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])();\r\n(0,_modules_calcValid_js__WEBPACK_IMPORTED_MODULE_3__[\"default\"])();\r\n(0,_modules_formValid_js__WEBPACK_IMPORTED_MODULE_4__[\"default\"])();\r\n(0,_modules_tabs_js__WEBPACK_IMPORTED_MODULE_5__[\"default\"])();\r\n(0,_modules_slider_js__WEBPACK_IMPORTED_MODULE_6__[\"default\"])(\r\n  \"portfolio-content\",\r\n  \"portfolio-item\",\r\n  \"portfolio-dots\",\r\n  \"dot\",\r\n  \"portfolio-btn\",\r\n  \"portfolio-item-active\",\r\n  \"dot-active\"\r\n);\r\n(0,_modules_calc_js__WEBPACK_IMPORTED_MODULE_7__[\"default\"])(100);\r\n\n\n//# sourceURL=webpack:///./index.js?");
+
+/***/ }),
+
+/***/ "./modules/calc.js":
+/*!*************************!*\
+  !*** ./modules/calc.js ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helpers */ \"./modules/helpers.js\");\n\r\n\r\n\r\n\r\nconst calc = (price = 100) => {\r\n  const calcBlock = document.querySelector(\".calc-block\");\r\n  const calcType = document.querySelector(\".calc-type\");\r\n  const calcSquare = document.querySelector(\".calc-square\");\r\n  const calcCount = document.querySelector(\".calc-count\");\r\n  const calcDay = document.querySelector(\".calc-day\");\r\n  const total = document.getElementById(\"total\");\r\n  let oldValue = 0;\r\n  let totalValue = 0;\r\n\r\n  const countCalc = () => {\r\n    const calcTypeValue = +calcType.options[calcType.selectedIndex].value;\r\n    const calcSquareValue = +calcSquare.value;\r\n    const calcCountValue = 1 + 0.1 * +calcCount.value;\r\n    const calcDayValue = !calcDay.value\r\n      ? 1\r\n      : +calcDay.value >= 10\r\n      ? 1\r\n      : +calcDay.value > 5\r\n      ? 1.5\r\n      : 2;\r\n    oldValue = totalValue;\r\n    totalValue = 0;\r\n\r\n    if (calcTypeValue && calcSquareValue) {\r\n      totalValue = Math.round(\r\n        price * calcTypeValue * calcSquareValue * calcCountValue * calcDayValue\r\n      );\r\n      console.log(\r\n        calcTypeValue,\r\n        calcSquareValue,\r\n        calcCountValue,\r\n        calcDayValue,\r\n        totalValue\r\n      );\r\n      (0,_helpers__WEBPACK_IMPORTED_MODULE_0__.animate)({\r\n        duration: 1000,\r\n        timing(timeFraction) {\r\n          return timeFraction;\r\n        },\r\n        draw(progress) {\r\n          if (totalValue > oldValue) {\r\n            total.textContent =\r\n              oldValue + parseInt((totalValue - oldValue) * progress);\r\n          } else if (totalValue < oldValue) {\r\n            total.textContent = parseInt(\r\n              oldValue - (oldValue - totalValue) * progress\r\n            );\r\n          } else {\r\n            total.textContent = totalValue;\r\n          }\r\n        },\r\n      });\r\n    } else {\r\n      total.textContent = 0;\r\n    }\r\n  };\r\n\r\n  calcBlock.addEventListener(\"input\", () => {\r\n    countCalc();\r\n  });\r\n};\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (calc);\r\n\n\n//# sourceURL=webpack:///./modules/calc.js?");
+
+/***/ }),
+
+/***/ "./modules/calcValid.js":
+/*!******************************!*\
+  !*** ./modules/calcValid.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/*jshint esversion: 6 */\r\n\r\n\r\n\r\nconst calcValid = () => {\r\n  const calcItems = document.querySelectorAll(\"input.calc-item\");\r\n  calcItems.forEach((calcItem) => {\r\n    calcItem.addEventListener(\"input\", () => {\r\n      calcItem.value = calcItem.value.replace(/[^\\d]/, \"\");\r\n    });\r\n  });\r\n};\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (calcValid);\r\n\n\n//# sourceURL=webpack:///./modules/calcValid.js?");
+
+/***/ }),
+
+/***/ "./modules/formValid.js":
+/*!******************************!*\
+  !*** ./modules/formValid.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/*jshint esversion: 6 */\r\n\r\n\r\n\r\nconst formValid = () => {\r\n  const formItemsText = document.querySelectorAll(\r\n    \"form input[type=text], form input[placeholder='Ваше сообщение']\"\r\n  );\r\n  const formItemsEmail = document.querySelectorAll(\"form input[type=email]\");\r\n  const formItemsTel = document.querySelectorAll(\"form input[type=tel]\");\r\n\r\n  formItemsText.forEach((formItemText) => {\r\n    formItemText.addEventListener(\"input\", () => {\r\n      console.log(\"Сообщение\");\r\n      formItemText.value = formItemText.value.replace(/[^а-яА-Я\\s\\-]+/g, \"\");\r\n    });\r\n  });\r\n\r\n  formItemsEmail.forEach((formItemEmail) => {\r\n    formItemEmail.addEventListener(\"input\", () => {\r\n      formItemEmail.value = formItemEmail.value.replace(\r\n        /[^a-zA-Z\\d\\@\\-\\_\\.\\!\\~\\*\\']+/g,\r\n        \"\"\r\n      );\r\n    });\r\n  });\r\n\r\n  formItemsTel.forEach((formItemTel) => {\r\n    formItemTel.addEventListener(\"input\", () => {\r\n      formItemTel.value = formItemTel.value.replace(/[^\\d\\\\(\\\\)\\-]+/g, \"\");\r\n    });\r\n  });\r\n\r\n  formItemsText.forEach((formItemText) => {\r\n    formItemText.addEventListener(\"blur\", () => {\r\n      console.log(\"Сообщение\");\r\n      formItemText.value = formItemText.value.replace(/[\\s]+/g, \" \");\r\n      formItemText.value = formItemText.value.replace(/[\\-]+/g, \"-\");\r\n      formItemText.value = formItemText.value.replace(/[\\s\\-]+/g, \"-\");\r\n      formItemText.value = formItemText.value.replace(/^[\\s\\-]+/g, \"\");\r\n      formItemText.value = formItemText.value.replace(/[\\s\\-]+$/g, \"\");\r\n      formItemText.value = formItemText.value.replace(\r\n        /( |^)[а-яА-Я]/g,\r\n        function (x) {\r\n          return x.toUpperCase();\r\n        }\r\n      );\r\n    });\r\n  });\r\n\r\n  formItemsEmail.forEach((formItemEmail) => {\r\n    formItemEmail.addEventListener(\"blur\", () => {\r\n      formItemEmail.value = formItemEmail.value.replace(/[\\-]+/g, \"-\");\r\n      formItemEmail.value = formItemEmail.value.replace(/[\\s\\-]+/g, \"-\");\r\n      formItemEmail.value = formItemEmail.value.replace(/^[\\s\\-]+/g, \"\");\r\n      formItemEmail.value = formItemEmail.value.replace(/[\\s\\-]+$/g, \"\");\r\n    });\r\n  });\r\n\r\n  formItemsTel.forEach((formItemTel) => {\r\n    formItemTel.addEventListener(\"blur\", () => {\r\n      formItemTel.value = formItemTel.value.replace(/[\\-]+/g, \"-\");\r\n      formItemTel.value = formItemTel.value.replace(/^[\\s\\-]+[\\s\\-]+/g, \"\");\r\n      formItemTel.value = formItemTel.value.replace(/[\\s\\-]+$/g, \"\");\r\n      formItemTel.value = formItemTel.value.replace(/[\\s\\-]+/g, \"-\");\r\n    });\r\n  });\r\n};\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (formValid);\r\n\n\n//# sourceURL=webpack:///./modules/formValid.js?");
+
+/***/ }),
+
+/***/ "./modules/helpers.js":
+/*!****************************!*\
+  !*** ./modules/helpers.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"animate\": () => (/* binding */ animate)\n/* harmony export */ });\nfunction animate({ timing, draw, duration }) {\r\n  let start = performance.now();\r\n\r\n  requestAnimationFrame(function animate(time) {\r\n    let timeFraction = (time - start) / duration;\r\n    if (timeFraction > 1) timeFraction = 1;\r\n\r\n    let progress = timing(timeFraction);\r\n\r\n    draw(progress); // отрисовать её\r\n\r\n    if (timeFraction < 1) {\r\n      requestAnimationFrame(animate);\r\n    }\r\n  });\r\n}\r\n\r\n\r\n\n\n//# sourceURL=webpack:///./modules/helpers.js?");
+
+/***/ }),
+
+/***/ "./modules/menu.js":
+/*!*************************!*\
+  !*** ./modules/menu.js ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/*jshint esversion: 6 */\r\n\r\n\r\n\r\nconst menu = () => {\r\n  const menu = document.querySelector(\"menu\");\r\n\r\n  const smoothScroll = (e) => {\r\n    e.preventDefault();\r\n    const blockID = undefined.getAttribute(\"href\").substr(1);\r\n\r\n    document.getElementById(blockID).scrollIntoView({\r\n      behavior: \"smooth\",\r\n      block: \"start\",\r\n    });\r\n  };\r\n\r\n  const handleMenu = () => {\r\n    menu.classList.toggle(\"active-menu\");\r\n  };\r\n\r\n  document.addEventListener(\"click\", (e) => {\r\n    switch (true) {\r\n      case !!e.target.closest(\".close-btn\"):\r\n      case !!e.target.closest(\".menu\"):\r\n        handleMenu(); //\r\n        break;\r\n      case !!e.target.matches(\"menu>ul>li>a\"):\r\n        handleMenu(); //\r\n        smoothScroll(e);\r\n        break;\r\n      case !!e.target.closest(\"main>a\"):\r\n        smoothScroll(e);\r\n        if (menu.classList.contains(\"active-menu\")) {\r\n          handleMenu(); //\r\n        }\r\n        break;\r\n      case !e.target.closest(\"menu\"):\r\n        if (menu.classList.contains(\"active-menu\")) {\r\n          handleMenu();\r\n        }\r\n        break;\r\n    }\r\n  });\r\n};\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (menu);\r\n\n\n//# sourceURL=webpack:///./modules/menu.js?");
+
+/***/ }),
+
+/***/ "./modules/modal.js":
+/*!**************************!*\
+  !*** ./modules/modal.js ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helpers */ \"./modules/helpers.js\");\n\r\n\r\n\r\n\r\nconst modal = () => {\r\n  const buttons = document.querySelectorAll(\".popup-btn\");\r\n  const modal = document.querySelector(\".popup\");\r\n  const modalContent = modal.querySelector(\".popup-content\");\r\n  modal.style.transform = \"translateY(100%)\";\r\n  modalContent.style.opacity = 0;\r\n\r\n  buttons.forEach((item) =>\r\n    item.addEventListener(\"click\", () => {\r\n      modalShow();\r\n    })\r\n  );\r\n\r\n  const modalShow = () => {\r\n    if (screen.width > 768) {\r\n      (0,_helpers__WEBPACK_IMPORTED_MODULE_0__.animate)({\r\n        duration: 2000,\r\n        timing(timeFraction) {\r\n          return timeFraction;\r\n        },\r\n        draw(progress) {\r\n          modal.style.display = \"block\";\r\n          modal.style.transform = `translateY(${100 * (1 - progress)}%)`;\r\n          setTimeout(() => {\r\n            modalContent.style.opacity = progress;\r\n          }, 2000);\r\n        },\r\n      });\r\n    } else {\r\n      modal.style.transform = \"\";\r\n      modalContent.style.opacity = 1;\r\n      modal.style.display = \"block\";\r\n    }\r\n  };\r\n\r\n  modal.addEventListener(\"click\", (e) => {\r\n    if (\r\n      !e.target.closest(\".popup-content\") ||\r\n      e.target.classList.contains(\"popup-close\")\r\n    ) {\r\n      if (screen.width > 768) {\r\n        (0,_helpers__WEBPACK_IMPORTED_MODULE_0__.animate)({\r\n          duration: 2000,\r\n          timing(timeFraction) {\r\n            return timeFraction;\r\n          },\r\n          draw(progress) {\r\n            modalContent.style.opacity = 1 - progress;\r\n            setTimeout(() => {\r\n              modal.style.transform = `translateY(${100 * progress}%)`;\r\n            }, 1000);\r\n\r\n            setTimeout(() => {\r\n              modal.style.display = \"none\";\r\n            }, 3000);\r\n          },\r\n        });\r\n      } else {\r\n        modal.style.transform = `translateY(100%)`;\r\n        modal.style.display = \"none\";\r\n        modalContent.style.opacity = 0;\r\n      }\r\n    }\r\n  });\r\n};\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (modal);\r\n\n\n//# sourceURL=webpack:///./modules/modal.js?");
+
+/***/ }),
+
+/***/ "./modules/slider.js":
+/*!***************************!*\
+  !*** ./modules/slider.js ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n\r\n\r\nconst slider = (\r\n  sliderBlockClass,\r\n  slidesClass,\r\n  dotsBlockClass,\r\n  dotsClass,\r\n  slideBtnClass,\r\n  itemActiveClass = \"portfolio-item-active\",\r\n  dotActiveClass = \"dot-active\"\r\n) => {\r\n  const sliderBlock = document.querySelector(`.${sliderBlockClass}`);\r\n  const slides = document.querySelectorAll(`.${slidesClass}`);\r\n  const dotsBlock = document.querySelector(`.${dotsBlockClass}`);\r\n  const dots = [];\r\n\r\n  if (\r\n    !(\r\n      sliderBlockClass &&\r\n      slidesClass &&\r\n      dotsBlockClass &&\r\n      dotsClass &&\r\n      slideBtnClass\r\n    )\r\n  )\r\n    return;\r\n\r\n  let currentSlide = 0;\r\n  let interval;\r\n  const timeInterval = 2000;\r\n\r\n  const createDots = () => {\r\n    for (let i = 0; i < slides.length; i++) {\r\n      const dot = document.createElement(\"li\");\r\n      dot.classList.add(dotsClass);\r\n      if (i === 0) dot.classList.add(dotActiveClass);\r\n      dots.push(dot);\r\n      dotsBlock.append(dot);\r\n    }\r\n  };\r\n\r\n  const prevSlide = (elems, index, strClass) => {\r\n    elems[index].classList.remove(strClass);\r\n  };\r\n\r\n  const nextSlide = (elems, index, strClass) => {\r\n    elems[index].classList.add(strClass);\r\n  };\r\n\r\n  const autoSlide = () => {\r\n    prevSlide(slides, currentSlide, itemActiveClass);\r\n    prevSlide(dots, currentSlide, dotActiveClass);\r\n\r\n    currentSlide++;\r\n\r\n    if (currentSlide === slides.length) currentSlide = 0;\r\n    nextSlide(slides, currentSlide, itemActiveClass);\r\n    nextSlide(dots, currentSlide, dotActiveClass);\r\n  };\r\n\r\n  const startSlide = (timerInterval) => {\r\n    interval = setInterval(autoSlide, timerInterval);\r\n  };\r\n\r\n  const stopSlide = () => {\r\n    clearInterval(interval);\r\n  };\r\n\r\n  sliderBlock.addEventListener(\"click\", (e) => {\r\n    e.preventDefault();\r\n\r\n    if (!e.target.matches(`.${dotsClass}, .${slideBtnClass}`)) {\r\n      return;\r\n    }\r\n\r\n    prevSlide(slides, currentSlide, itemActiveClass);\r\n    prevSlide(dots, currentSlide, dotActiveClass);\r\n\r\n    if (e.target.matches(\"#arrow-right\")) {\r\n      currentSlide++;\r\n    } else if (e.target.matches(\"#arrow-left\")) {\r\n      currentSlide--;\r\n    } else if (e.target.matches(`.${dotsClass}`)) {\r\n      currentSlide = dots.indexOf(e.target);\r\n    }\r\n\r\n    if (currentSlide === slides.length) currentSlide = 0;\r\n    if (currentSlide < 0) currentSlide = slides.length - 1;\r\n\r\n    nextSlide(slides, currentSlide, itemActiveClass);\r\n    nextSlide(dots, currentSlide, dotActiveClass);\r\n  });\r\n\r\n  sliderBlock.addEventListener(\r\n    \"mouseenter\",\r\n    (e) => {\r\n      if (e.target.matches(`.${dotsClass}, .${slideBtnClass}`)) stopSlide();\r\n    },\r\n    true\r\n  );\r\n\r\n  sliderBlock.addEventListener(\r\n    \"mouseleave\",\r\n    (e) => {\r\n      if (e.target.matches(`.${dotsClass}, .${slideBtnClass}`))\r\n        startSlide(timeInterval);\r\n    },\r\n    true\r\n  );\r\n\r\n  createDots();\r\n  startSlide(timeInterval);\r\n};\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (slider);\r\n\n\n//# sourceURL=webpack:///./modules/slider.js?");
+
+/***/ }),
+
+/***/ "./modules/tabs.js":
+/*!*************************!*\
+  !*** ./modules/tabs.js ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/*jshint esversion: 6 */\r\n\r\n\r\n\r\nconst tabs = () => {\r\n  const tabContent = document.querySelectorAll(\".service-tab\");\r\n  const tabPanel = document.querySelector(\".service-header\");\r\n  const tabs = document.querySelectorAll(\".service-header-tab\");\r\n\r\n  tabPanel.addEventListener(\"click\", (e) => {\r\n    if (e.target.closest(\".service-header-tab\")) {\r\n      const tabBtn = e.target.closest(\".service-header-tab\");\r\n      tabs.forEach((tab, index) => {\r\n        if (tab === tabBtn) {\r\n          tab.classList.add(\"active\");\r\n          tabContent[index].classList.remove(\"d-none\");\r\n        } else {\r\n          tab.classList.remove(\"active\");\r\n          tabContent[index].classList.add(\"d-none\");\r\n        }\r\n      });\r\n    }\r\n  });\r\n};\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (tabs);\r\n\n\n//# sourceURL=webpack:///./modules/tabs.js?");
+
+/***/ }),
+
+/***/ "./modules/timer.js":
+/*!**************************!*\
+  !*** ./modules/timer.js ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/*jshint esversion: 6 */\r\n\r\nconst timer = (deadline) => {\r\n  const timerHours = document.getElementById(\"timer-hours\");\r\n  const timerMinutes = document.getElementById(\"timer-minutes\");\r\n  const timerSeconds = document.getElementById(\"timer-seconds\");\r\n  const timerDays = document.getElementById(\"timer-days\");\r\n  let timerInterval;\r\n\r\n  const getTimeRemaining = () => {\r\n    let dateStop = new Date(deadline).getTime();\r\n    let dateNow = new Date().getTime();\r\n    let timeRemaining = (dateStop - dateNow) / 1000;\r\n    // let days = Math.floor(timeRemaining / 3600 / 24);\r\n\r\n    let hours = Math.floor(timeRemaining / 3600);\r\n    let minutes = Math.floor((timeRemaining / 60) % 60);\r\n    let seconds = Math.floor(timeRemaining % 60);\r\n\r\n    return {\r\n      timeRemaining,\r\n      // days,\r\n      hours,\r\n      minutes,\r\n      seconds,\r\n    };\r\n  };\r\n\r\n  const updateClock = () => {\r\n    let getTime = getTimeRemaining();\r\n    // timerDays.textContent =\r\n    //   getTime.days.toString().length === 1 ? \"0\" + getTime.days : getTime.days;\r\n    timerHours.textContent =\r\n      getTime.hours.toString().length === 1\r\n        ? \"0\" + getTime.hours + \"ч\"\r\n        : getTime.hours + \"ч\";\r\n    timerMinutes.textContent =\r\n      getTime.minutes.toString().length === 1\r\n        ? \"0\" + getTime.minutes + \"мин\"\r\n        : getTime.minutes + \"мин\";\r\n    timerSeconds.textContent =\r\n      getTime.seconds.toString().length === 1\r\n        ? \"0\" + getTime.seconds + \"сек\"\r\n        : getTime.seconds + \"сек\";\r\n    return getTime.timeRemaining;\r\n  };\r\n\r\n  // updateClock();\r\n\r\n  if (updateClock() > 0) {\r\n    timerInterval = setInterval(updateClock, 1000);\r\n  } else {\r\n    clearInterval(timerInterval);\r\n\r\n    // timerDays.textContent = \"00\";\r\n    timerHours.textContent = \"00\";\r\n    timerMinutes.textContent = \"00\";\r\n    timerSeconds.textContent = \"00\";\r\n  }\r\n};\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (timer);\r\n\n\n//# sourceURL=webpack:///./modules/timer.js?");
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	var __webpack_exports__ = __webpack_require__("./index.js");
+/******/ 	
+/******/ })()
+;
