@@ -1,7 +1,5 @@
 "use strict";
 
-"use strict";
-
 const calc = (price = 100) => {
   const calcBlock = document.querySelector(".calc-block");
   const calcType = document.querySelector(".calc-type");
@@ -15,8 +13,7 @@ const calc = (price = 100) => {
   const countCalc = () => {
     const calcTypeValue = +calcType.options[calcType.selectedIndex].value;
     const calcSquareValue = +calcSquare.value;
-    let calcCountValue = 1 + 0.1 * +calcCount.value;
-    if (+calcCount.value === 4) calcCountValue = 1.4;
+    const calcCountValue = 1 + 0.1 * +calcCount.value;
     const calcDayValue = !calcDay.value
       ? 1
       : +calcDay.value >= 10
@@ -30,28 +27,26 @@ const calc = (price = 100) => {
     let oldValue = total.textContent;
 
     if (calcTypeValue && calcSquareValue) {
-      totalValue = Math.round(
-        price *
-          +calcTypeValue *
-          +calcSquareValue *
-          +calcCountValue *
-          +calcDayValue
-      );
+      totalValue =
+        price * calcTypeValue * calcSquareValue * calcCountValue * calcDayValue;
       console.log(
         price,
-        +calcTypeValue,
+        calcTypeValue,
         calcSquareValue,
         calcCountValue,
-        calcDayValue,
-        totalValue
+        calcDayValue
       );
       i = 0;
       id = setInterval(() => {
         if (totalValue > +total.textContent) {
+          console.log(
+            10 ** Math.abs(totalValue - total.textContent).toString().length - 1
+          );
           total.textContent = +oldValue + i;
         } else if (totalValue < +total.textContent) {
           total.textContent = +oldValue - i;
         } else if (+total.textContent === totalValue) {
+          oldValue = totalValue;
           clearInterval(id);
         }
 
@@ -66,6 +61,7 @@ const calc = (price = 100) => {
 
   calcBlock.addEventListener("input", () => {
     clearInterval(id);
+    console.log("calc");
     countCalc();
   });
 };
