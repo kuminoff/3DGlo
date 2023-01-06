@@ -9,7 +9,7 @@ import tabs from "./modules/tabs.js";
 import slider from "./modules/slider.js";
 import calc from "./modules/calc.js";
 
-timer("14 january 2023");
+timer("24 january 2023");
 menu();
 modal();
 calcValid();
