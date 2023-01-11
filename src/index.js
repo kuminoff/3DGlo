@@ -8,6 +8,7 @@ import formValid from "./modules/formValid.js";
 import tabs from "./modules/tabs.js";
 import slider from "./modules/slider.js";
 import calc from "./modules/calc.js";
+import sendForm from "./modules/sendForm.js";
 
 timer("24 january 2023");
 menu();
@@ -25,3 +26,30 @@ slider(
   "dot-active"
 );
 calc(100);
+sendForm({
+  formId: "form1",
+  someElement: [
+    {
+      type: "block",
+      id: "total",
+    },
+  ],
+});
+sendForm({
+  formId: "form2",
+  someElement: [
+    {
+      type: "block",
+      id: "total",
+    },
+  ],
+});
+sendForm({
+  formId: "form3",
+  someElement: [
+    {
+      type: "block",
+      id: "total",
+    },
+  ],
+});
