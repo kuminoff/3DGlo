@@ -1,6 +1,10 @@
 "use strict";
 
 const validator = (items) => {
+  let phoneInput = document
+    .querySelector('input[name="user_phone"]')
+    .getAttribute("name");
+  console.log("val " + phoneInput);
   let flag = true;
   items.forEach((item) => {
     switch (true) {
@@ -16,7 +20,7 @@ const validator = (items) => {
           item.classList.add("error");
         }
         break;
-      case item.matches("form input[type=tel]"):
+      case phoneInput:
         if (
           !item.value.match(
             /^((\+7|7|8)+\(?([0-9]){3}\)?)(\-?([0-9]){3})(\-?([0-9]){2}){2}$/g
