@@ -1,6 +1,6 @@
 "use strict";
 
-import validator from "./validator.js";
+import inputValid from "./inputValid";
 
 const formValid = () => {
   const formItemsText = document.querySelectorAll("form input[type=text]");
@@ -10,10 +10,12 @@ const formValid = () => {
   const formItemsMes = document.querySelectorAll(
     "form input[name='user_message']"
   );
+  const formItems = document.querySelectorAll("form input");
 
   formItemsText.forEach((formItemText) => {
     formItemText.addEventListener("input", () => {
       formItemText.value = formItemText.value.replace(/[^а-яА-Я\s\-]+/g, "");
+      if (formItemText.classList.contains("error")) inputValid(formItemText);
     });
   });
 
@@ -32,12 +34,14 @@ const formValid = () => {
         /[^a-zA-Z\d\@\-\_\.\!\~\*\']+/g,
         ""
       );
+      if (formItemEmail.classList.contains("error")) inputValid(formItemEmail);
     });
   });
 
   formItemsTel.forEach((formItemTel) => {
     formItemTel.addEventListener("input", () => {
       formItemTel.value = formItemTel.value.replace(/[^\d\\(\\)\-\+]+/g, "");
+      if (formItemTel.classList.contains("error")) inputValid(formItemTel);
     });
   });
 
@@ -82,19 +86,6 @@ const formValid = () => {
       formItemTel.value = formItemTel.value.replace(/^[\s\-]+[\s\-]+/g, "");
       formItemTel.value = formItemTel.value.replace(/[\s\-]+$/g, "");
       formItemTel.value = formItemTel.value.replace(/[\s\-]+/g, "-");
-    });
-  });
-
-  formBtn.forEach((item) => {
-    item.addEventListener("click", (e) => {
-      const form = e.target.closest("form");
-      if (form === null) return;
-      const formItem = [
-        form.querySelector("form input[type=text]"),
-        form.querySelector("form input[type=email]"),
-        form.querySelector("form input[type=tel]"),
-      ];
-      validator(formItem);
     });
   });
 };
