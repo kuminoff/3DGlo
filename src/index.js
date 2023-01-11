@@ -10,26 +10,6 @@ import slider from "./modules/slider.js";
 import calc from "./modules/calc.js";
 import sendForm from "./modules/sendForm.js";
 
-// let nameInput = document
-//   .querySelector('form input[name="user_name"]')
-//   .getAttribute("name");
-// let emailInput = document
-//   .querySelector('form input[name="user_email"]')
-//   .getAttribute("name");
-// let phoneInput = document
-//   .querySelector('form input[name="user_phone"]')
-//   .getAttribute("name");
-
-// console.log("name   " + nameInput);
-// console.log("mail     " + emailInput);
-// console.log(phoneInput);
-
-let phoneInput = document
-  .querySelector('input[name="user_phone"]')
-  .getAttribute("name");
-console.log("inp " + phoneInput);
-phoneInput = "user_phone" ? console.log("1") : console.log("2");
-
 timer("24 january 2023");
 menu();
 modal();

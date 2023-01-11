@@ -4,8 +4,8 @@ const menu = () => {
   const menu = document.querySelector("menu");
 
   const smoothScroll = (e, item) => {
-    e.preventDefault();
-    const blockID = item.getAttribute("href").substr(1);
+    e.preventDefault(); //отключяем стандартную прокрутку якоря
+    const blockID = item.getAttribute("href").substr(1); //получаем id элемента, к которому нужно прокрутить
 
     document.getElementById(blockID).scrollIntoView({
       //получаем элемент по id, затем совершается прокрутка с заданными параметрами
