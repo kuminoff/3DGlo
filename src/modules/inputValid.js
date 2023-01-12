@@ -2,17 +2,21 @@
 
 const inputValid = (item) => {
   switch (true) {
-    case item.matches("form input[type=text]"):
+    case item.name === "user_name":
       if (item.value.match(/[a-яA-я]{2}/gi)) {
         item.classList.remove("error");
       }
       break;
-    case item.matches("form input[type=email]"):
-      if (item.value.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/gi)) {
+    case item.name === "user_email":
+      if (
+        item.value.match(
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        )
+      ) {
         item.classList.remove("error");
       }
       break;
-    case item.matches("form input[type=tel]"):
+    case item.name === "user_phone":
       if (
         item.value.match(
           /^((\+7|7|8)+\(?([0-9]){3}\)?)(\-?([0-9]){3})(\-?([0-9]){2}){2}$/g

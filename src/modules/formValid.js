@@ -6,7 +6,6 @@ const formValid = () => {
   const formItemsText = document.querySelectorAll("form input[type=text]");
   const formItemsEmail = document.querySelectorAll("form input[type=email]");
   const formItemsTel = document.querySelectorAll("form input[type=tel]");
-  const formBtn = document.querySelectorAll(".form-btn");
   const formItemsMes = document.querySelectorAll(
     "form input[name='user_message']"
   );
