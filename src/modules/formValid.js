@@ -1,7 +1,5 @@
 "use strict";
 
-import inputValid from "./inputValid";
-
 const formValid = () => {
   const formItemsText = document.querySelectorAll("form input[type=text]");
   const formItemsEmail = document.querySelectorAll("form input[type=email]");
@@ -14,7 +12,6 @@ const formValid = () => {
   formItemsText.forEach((formItemText) => {
     formItemText.addEventListener("input", () => {
       formItemText.value = formItemText.value.replace(/[^а-яА-Я\s\-]+/g, "");
-      if (formItemText.classList.contains("error")) inputValid(formItemText);
     });
   });
 
@@ -33,14 +30,12 @@ const formValid = () => {
         /[^a-zA-Z\d\@\-\_\.\!\~\*\']+/g,
         ""
       );
-      if (formItemEmail.classList.contains("error")) inputValid(formItemEmail);
     });
   });
 
   formItemsTel.forEach((formItemTel) => {
     formItemTel.addEventListener("input", () => {
       formItemTel.value = formItemTel.value.replace(/[^\d\\(\\)\-\+]+/g, "");
-      if (formItemTel.classList.contains("error")) inputValid(formItemTel);
     });
   });
 
