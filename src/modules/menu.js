@@ -4,44 +4,22 @@
 
 const menu = () => {
   const menu = document.querySelector("menu");
+  const closeBtn = menu.querySelector(".close-btn");
+  const menuItems = menu.querySelectorAll("ul>li>a");
 
-  const smoothScroll = (e) => {
-    e.preventDefault();
-    const blockID = this.getAttribute("href").substr(1);
-
-    document.getElementById(blockID).scrollIntoView({
-      behavior: "smooth",
-      block: "start",
+  const toggleMenu = () => {
+    document.addEventListener("click", (e) => {
+      if (e.target.closest(".menu") || e.target === closeBtn) {
+        menu.classList.toggle("active-menu");
+      } else if (!e.target.closest(".active-menu")) {
+        menu.classList.remove("active-menu");
+      } else if (e.target.closest("a")) {
+        menu.classList.remove("active-menu");
+      }
     });
   };
 
-  const handleMenu = () => {
-    menu.classList.toggle("active-menu");
-  };
-
-  document.addEventListener("click", (e) => {
-    switch (true) {
-      case !!e.target.closest(".close-btn"):
-      case !!e.target.closest(".menu"):
-        handleMenu(); //
-        break;
-      case !!e.target.matches("menu>ul>li>a"):
-        handleMenu(); //
-        smoothScroll(e);
-        break;
-      case !!e.target.closest("main>a"):
-        smoothScroll(e);
-        if (menu.classList.contains("active-menu")) {
-          handleMenu(); //
-        }
-        break;
-      case !e.target.closest("menu"):
-        if (menu.classList.contains("active-menu")) {
-          handleMenu();
-        }
-        break;
-    }
-  });
+  toggleMenu();
 };
 
 export default menu;
