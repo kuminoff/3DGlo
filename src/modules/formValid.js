@@ -13,7 +13,7 @@ const formValid = () => {
 
   formItemsText.forEach((formItemText) => {
     formItemText.addEventListener("input", () => {
-      formItemText.value = formItemText.value.replace(я);
+      formItemText.value = formItemText.value.replace(/[^а-яА-Я\s\-]+/g, "");
       if (formItemText.classList.contains("error")) inputValid(formItemText);
     });
   });
@@ -65,8 +65,8 @@ const formValid = () => {
       formItemMes.value = formItemMes.value.replace(/[\s]+/g, " ");
       formItemMes.value = formItemMes.value.replace(/[\-]+/g, " ");
       formItemMes.value = formItemMes.value.replace(/[\s\-]+/g, " ");
-      formItemMes.value = formItemMes.value.replace(/^[\s\-]+/g, " ");
-      formItemMes.value = formItemMes.value.replace(/[\s\-]+$/g, " ");
+      formItemMes.value = formItemMes.value.replace(/^[\s\-]+/g, "");
+      formItemMes.value = formItemMes.value.replace(/[\s\-]+$/g, "");
     });
   });
 

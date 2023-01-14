@@ -16,11 +16,7 @@ const validator = (items) => {
   items.forEach((item) => {
     switch (true) {
       case item.name === "user_name":
-        if (
-          !item.value.match(
-            /^([А-ЯA-Z]|[А-ЯA-Z][\x27а-яa-z]{1,}|[А-ЯA-Z][\x27а-яa-z]{1,}\-([А-ЯA-Z][\x27а-яa-z]{1,}|(оглы)|(кызы)))\040[А-ЯA-Z][\x27а-яa-z]{1,}(\040[А-ЯA-Z][\x27а-яa-z]{1,})?$/
-          )
-        ) {
+        if (!item.value.match(/[a-яA-я]{2}/gi)) {
           flag = false;
           item.classList.add("error");
         }
