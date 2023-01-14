@@ -62,11 +62,11 @@ const formValid = () => {
 
   formItemsMes.forEach((formItemMes) => {
     formItemMes.addEventListener("blur", () => {
-      formItemMes.value = formItemMes.value.replace(/[\s]+/g, " ");
-      formItemMes.value = formItemMes.value.replace(/[\-]+/g, " ");
-      formItemMes.value = formItemMes.value.replace(/[\s\-]+/g, " ");
-      formItemMes.value = formItemMes.value.replace(/^[\s\-]+/g, "");
-      formItemMes.value = formItemMes.value.replace(/[\s\-]+$/g, "");
+      formItemMes.value = formItemMes.value.replace(/[a-zA-Z0-9]+/, "");
+      // formItemMes.value = formItemMes.value.replace(/[\-]+/g, " ");
+      // formItemMes.value = formItemMes.value.replace(/[\s\-]+/g, " ");
+      // formItemMes.value = formItemMes.value.replace(/^[\s\-]+/g, "");
+      // formItemMes.value = formItemMes.value.replace(/[\s\-]+$/g, "");
     });
   });
 
